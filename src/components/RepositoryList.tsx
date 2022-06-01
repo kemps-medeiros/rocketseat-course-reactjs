@@ -9,11 +9,15 @@ import { RepositoryItem } from "./RepositoryItem";
 //     link: 'https://github.com/unform/unform'
 // }
 
-
+interface Repository {
+    name : string;
+    description: string;
+    html_url: string;
+}
 
 export function RepositoryList() {
 
-    const [repositories, setRepositories] = useState([]);
+    const [repositories, setRepositories] = useState<Repository[]>([]);
 
     useEffect(() => {
         fetch('https://api.github.com/users/kemps-medeiros/repos')
@@ -31,7 +35,6 @@ export function RepositoryList() {
                 {repositories.map(repository => {
                     return <RepositoryItem key={repository.name} repository={repository}/>
                 })}
-                {/* <RepositoryItem /> */}
                
 
             </ul>
